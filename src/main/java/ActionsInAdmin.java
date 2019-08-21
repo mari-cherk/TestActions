@@ -15,10 +15,10 @@ public class ActionsInAdmin {
         driver.manage().window().maximize();
 
         WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("email")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("email")));
 
         WebElement loginInput = driver.findElement(By.id("email"));
-        loginInput.sendKeys(" webinar.test@gmail.com");
+        loginInput.sendKeys("webinar.test@gmail.com");
 
         WebElement passwordInput = driver.findElement(By.id("passwd"));
         passwordInput.sendKeys("Xcg7299bnSmMuRLp9ITw");
@@ -26,7 +26,7 @@ public class ActionsInAdmin {
         WebElement submitButton = driver.findElement(By.name("submitLogin"));
         submitButton.click();
 
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.xpath("//*[@id='subtab-AdminCatalog']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='subtab-AdminCatalog']")));
 
         WebElement adminCatalog = driver.findElement(By.xpath("//*[@id='subtab-AdminCatalog']"));
         WebElement adminCategories = driver.findElement(By.xpath("//*[@id='subtab-AdminCategories']"));
