@@ -7,6 +7,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.Random;
 
 public class ActionsInAdmin {
     public static void main(String[] args) {
@@ -41,8 +42,11 @@ public class ActionsInAdmin {
 
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='name_1']")));
 
+        Random random = new Random();
+        int n = random.nextInt(100)+1;
         WebElement inputNameCategory = driver.findElement(By.xpath("//*[@id='name_1']"));
-        inputNameCategory.sendKeys("category1");
+        String nameOfCategory = "category" + n;
+        inputNameCategory.sendKeys(nameOfCategory);
 
         JavascriptExecutor js = (JavascriptExecutor) driver;
         WebElement saveButton = driver.findElement(By.xpath("//*[@id='category_form_submit_btn']"));
@@ -53,17 +57,17 @@ public class ActionsInAdmin {
 
         WebElement createMessage = driver.findElement(By.xpath("//*[@class='alert alert-success']"));
 
-        System.out.println("The text message is "+ createMessage.getText());
+        System.out.println("The text message is "+ createMessage.getText().split("×")[1]);
 
         WebElement findNameCategory = driver.findElement(By.xpath("//*[@name='categoryFilter_name']"));
-        findNameCategory.sendKeys("category1");
+        findNameCategory.sendKeys(nameOfCategory);
 
         WebElement searchButton = driver.findElement(By.xpath("//*[@id='submitFilterButtoncategory']"));
         searchButton.click();
 
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class=' odd']")));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class=\"pointer\"][1]")));
 
-        System.out.println("Found is "+ driver.findElement(By.xpath("//*[@class=' odd']")).getText());
+        System.out.println("Found is "+ driver.findElement(By.xpath("//*[@class=\"pointer\"][1]")).getText());
 
         driver.quit();
 
